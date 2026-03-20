@@ -368,18 +368,8 @@ function hidePreloader() {
   const pl = document.getElementById('preloader');
   if (pl && !pl.classList.contains('hidden')) pl.classList.add('hidden');
 }
-
-// Скрываем лоадер как только DOM готов (не ждём все картинки)
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(hidePreloader, 800);
-});
-
-// Запасной вариант — если load всё же сработает раньше
-window.addEventListener('load', () => {
-  setTimeout(hidePreloader, 400);
-});
-
-// Аварийный таймаут — лоадер скроется максимум через 3 секунды
+document.addEventListener('DOMContentLoaded', () => { setTimeout(hidePreloader, 800); });
+window.addEventListener('load', () => { setTimeout(hidePreloader, 400); });
 setTimeout(hidePreloader, 3000);
 
 /* ---- NAVBAR SCROLL ---- */
