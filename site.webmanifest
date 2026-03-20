@@ -1,0 +1,14 @@
+{
+  "name": "Abdullazadə Turan — Vəkil",
+  "short_name": "Vəkil Turan",
+  "description": "Bakıda peşəkar vəkil xidmətləri. Ailə, cinayət, əmlak və inzibati hüquq sahələrində 7 illik təcrübə.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0c10",
+  "theme_color": "#C4A054",
+  "lang": "az",
+  "icons": [
+    { "src": "images/favicon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/favicon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

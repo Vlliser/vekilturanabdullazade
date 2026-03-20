@@ -7,7 +7,7 @@
    Получить хэш: https://emn178.github.io/online-tools/sha256.html
    ============================================ */
 
-const ADMIN_HASH = '24fccf996f96f92f2d9d6a893b67d59d769a8501898d438cc0b096839c584c61';
+const ADMIN_HASH = 'f7c17e57038ef65979de91c7cb61948a20a73b38f579c888f495b52040fc6abc';
 // Это хэш от "turan2025"
 // НЕ храни пароль в открытом виде — только хэш!
 
