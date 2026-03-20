@@ -1,61 +1,23 @@
-/* ============================================
-   ADMIN LOGIN
-   Пароль: valliserturan
-   Чтобы сменить — просто поменяй строку ADMIN_PASSWORD ниже
-   (файл admin.js всё равно закрыт от публики через robots.txt)
-   ============================================ */
 
-// Simple XOR-obfuscated password storage
-// Not plain text, but also works on http:// and file://
-const _a = [118,97,108,108,105,115,101,114,116,117,114,97,110];
-const ADMIN_PASSWORD = _a.map(c => String.fromCharCode(c)).join('');
-
-const SESSION_KEY = 'turan_admin_auth';
-
-function checkLogin() {
-  // Already authenticated in this session?
-  if (sessionStorage.getItem(SESSION_KEY) === 'ok') {
-    showAdminPanel();
-    return;
-  }
-
-  // login-screen is visible by default (no display:none in HTML)
-  const btn = document.getElementById('login-btn');
-  const inp = document.getElementById('login-password');
-  const err = document.getElementById('login-error');
-
-  function attempt() {
-    if (inp.value === ADMIN_PASSWORD) {
-      sessionStorage.setItem(SESSION_KEY, 'ok');
-      document.getElementById('login-screen').style.display = 'none';
-      showAdminPanel();
-    } else {
-      err.classList.add('show');
-      btn.classList.add('shake');
-      inp.value = '';
-      inp.focus();
-      setTimeout(() => btn.classList.remove('shake'), 400);
-    }
-  }
-
-  btn.addEventListener('click', attempt);
-  inp.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+// ---- NAVIGATION ----
+function initNavigation() {
+  document.querySelectorAll('.sidebar-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var panel = link.getAttribute('data-panel');
+      if (!panel) return;
+      document.querySelectorAll('.sidebar-link').forEach(function(l) { l.classList.remove('active'); });
+      document.querySelectorAll('.admin-panel').forEach(function(p) { p.classList.remove('active'); });
+      link.classList.add('active');
+      var panelEl = document.getElementById('panel-' + panel);
+      if (panelEl) panelEl.classList.add('active');
+      document.getElementById('topbar-title').textContent = link.querySelector('span').textContent;
+    });
+  });
 }
-
-function showAdminPanel() {
-  document.getElementById('admin-layout').style.display = 'flex';
-  initAdmin();
-}
-
-// Start after DOM is ready
-document.addEventListener('DOMContentLoaded', checkLogin);
-
-/* ============================================
-   END LOGIN — main admin code below
-   ============================================ */
 
 /* ============================================
    TURAN ABDULLAZADƏ - Admin Panel JS
+   Логин обрабатывается в index.html
    ============================================ */
 
 // ---- DATA STORAGE ----
@@ -340,4 +302,4 @@ function initAdmin() {
   renderMedia();
 }
 
-// initAdmin() is now called by showAdminPanel() after successful login
+

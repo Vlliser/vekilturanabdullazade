@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<!-- ===== LOGIN SCREEN ===== -->
-<div id="login-screen" style="display:flex;">
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
   <div class="login-box">
     <img src="../images/logo.png" alt="Logo" class="login-logo" />
     <div class="login-title">Admin Panel</div>
@@ -20,7 +20,7 @@
         <i class="fas fa-lock"></i>
         <input type="password" id="login-password" placeholder="Parol..." autocomplete="current-password" />
       </div>
-      <div class="login-error" id="login-error">Parol yanlisdir!</div>
+      <div class="login-error" id="login-error" style="display:none;">Parol yanlisdir!</div>
       <button class="login-btn" id="login-btn">
         <i class="fas fa-sign-in-alt"></i> Daxil ol
       </button>
@@ -28,9 +28,8 @@
   </div>
 </div>
 
+<!-- ADMIN PANEL -->
 <div class="admin-layout" id="admin-layout" style="display:none;">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-brand">
       <img src="../images/logo.png" alt="Logo" />
@@ -39,51 +38,22 @@
         <div class="sidebar-brand-role">Turan Abdullazadə</div>
       </div>
     </div>
-
     <nav class="sidebar-nav">
       <div class="sidebar-section-title">İdarəetmə</div>
-
-      <button class="sidebar-link active" data-panel="dashboard">
-        <i class="fas fa-th-large"></i>
-        <span>Dashboard</span>
-      </button>
-      <button class="sidebar-link" data-panel="profile">
-        <i class="fas fa-user"></i>
-        <span>Profil məlumatları</span>
-      </button>
-
+      <button class="sidebar-link active" data-panel="dashboard"><i class="fas fa-th-large"></i><span>Dashboard</span></button>
+      <button class="sidebar-link" data-panel="profile"><i class="fas fa-user"></i><span>Profil məlumatları</span></button>
       <div class="sidebar-section-title">Kontent</div>
-
-      <button class="sidebar-link" data-panel="testimonials">
-        <i class="fas fa-comments"></i>
-        <span>Rəylər</span>
-      </button>
-      <button class="sidebar-link" data-panel="certificates">
-        <i class="fas fa-certificate"></i>
-        <span>Sertifikatlar</span>
-      </button>
-      <button class="sidebar-link" data-panel="media">
-        <i class="fas fa-tv"></i>
-        <span>Media çıxışları</span>
-      </button>
-
+      <button class="sidebar-link" data-panel="testimonials"><i class="fas fa-comments"></i><span>Rəylər</span></button>
+      <button class="sidebar-link" data-panel="certificates"><i class="fas fa-certificate"></i><span>Sertifikatlar</span></button>
+      <button class="sidebar-link" data-panel="media"><i class="fas fa-tv"></i><span>Media çıxışları</span></button>
       <div class="sidebar-section-title">Parametrlər</div>
-
-      <button class="sidebar-link" data-panel="data">
-        <i class="fas fa-database"></i>
-        <span>Məlumat yedəyi</span>
-      </button>
+      <button class="sidebar-link" data-panel="data"><i class="fas fa-database"></i><span>Məlumat yedəyi</span></button>
     </nav>
-
     <div class="sidebar-footer">
-      <a href="../index.html" class="sidebar-back-btn">
-        <i class="fas fa-arrow-left"></i>
-        Sayta qayıt
-      </a>
+      <a href="../index.html" class="sidebar-back-btn"><i class="fas fa-arrow-left"></i> Sayta qayıt</a>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="admin-main">
     <div class="admin-topbar">
       <span class="admin-topbar-title" id="topbar-title">Dashboard</span>
@@ -91,261 +61,189 @@
         <span class="topbar-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Aktiv</span>
       </div>
     </div>
-
     <div class="admin-content">
 
-      <!-- ===== DASHBOARD ===== -->
+      <!-- DASHBOARD -->
       <div class="admin-panel active" id="panel-dashboard">
         <div class="stats-summary">
-          <div class="stat-card">
-            <div class="stat-card-num" id="dash-testimonials">—</div>
-            <div class="stat-card-label">Rəylər</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-card-num" id="dash-certs">—</div>
-            <div class="stat-card-label">Sertifikatlar</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-card-num" id="dash-media">—</div>
-            <div class="stat-card-label">Media çıxışları</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-card-num" id="dash-langs">3</div>
-            <div class="stat-card-label">Dil versiyası</div>
-          </div>
+          <div class="stat-card"><div class="stat-card-num" id="dash-testimonials">—</div><div class="stat-card-label">Rəylər</div></div>
+          <div class="stat-card"><div class="stat-card-num" id="dash-certs">—</div><div class="stat-card-label">Sertifikatlar</div></div>
+          <div class="stat-card"><div class="stat-card-num" id="dash-media">—</div><div class="stat-card-label">Media</div></div>
+          <div class="stat-card"><div class="stat-card-num">3</div><div class="stat-card-label">Dil versiyası</div></div>
         </div>
-
-        <div class="admin-card">
-          <div class="admin-card-title"><i class="fas fa-info-circle"></i> Admin Panel haqqında</div>
-          <p style="color:var(--muted); line-height:1.8; font-size:13.5px;">
-            Bu admin panel vasitəsilə saytın bütün dinamik kontentini idarə edə bilərsiniz:<br><br>
-            <strong style="color:var(--text);">📋 Profil məlumatları</strong> — Ad, telefon, ünvan, sosial şəbəkə linkləri<br>
-            <strong style="color:var(--text);">💬 Rəylər</strong> — Müvəkkil rəylərini əlavə et, redaktə et, sil<br>
-            <strong style="color:var(--text);">🎓 Sertifikatlar</strong> — Sertifikat və diplomları idarə et<br>
-            <strong style="color:var(--text);">📺 Media çıxışları</strong> — TV, radio, mətbuat çıxışlarını əlavə et<br>
-            <strong style="color:var(--text);">💾 Məlumat yedəyi</strong> — Məlumatları JSON formatında export/import et<br><br>
-            <span style="color:var(--gold); font-size:12px;">⚠️ Məlumatlar hazırda brauzer localStorage-da saxlanılır. GitHub Pages üçün uyğundur. Hostingerdə server backend əlavə etmək tövsiyə olunur.</span>
-          </p>
-        </div>
-
         <div class="admin-card">
           <div class="admin-card-title"><i class="fas fa-link"></i> Sürətli keçidlər</div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
             <a href="../index.html" target="_blank" class="btn btn-gold"><i class="fas fa-eye"></i> Sayta bax</a>
             <a href="https://www.facebook.com/vekilturanabdullazade" target="_blank" class="btn btn-ghost"><i class="fab fa-facebook-f"></i> Facebook</a>
-            <a href="https://www.instagram.com/vekil.turan.abdullazadeh/" target="_blank" class="btn btn-ghost"><i class="fab fa-instagram"></i> Instagram</a>
             <a href="https://wa.me/994709807107" target="_blank" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
 
-      <!-- ===== PROFILE ===== -->
+      <!-- PROFILE -->
       <div class="admin-panel" id="panel-profile">
         <div class="admin-card">
           <div class="admin-card-title"><i class="fas fa-user"></i> Profil məlumatları</div>
           <form id="profile-form">
             <div class="admin-grid admin-grid-2">
-              <div class="form-group">
-                <label class="form-label">Ad, Soyad</label>
-                <input type="text" id="p-name" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Vəzifə (AZ)</label>
-                <input type="text" id="p-role_az" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Vəzifə (RU)</label>
-                <input type="text" id="p-role_ru" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Vəzifə (EN)</label>
-                <input type="text" id="p-role_en" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Telefon</label>
-                <input type="text" id="p-phone" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">E-poçt</label>
-                <input type="email" id="p-email" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">WhatsApp nömrəsi (rəqəmlər)</label>
-                <input type="text" id="p-whatsapp" class="form-input" placeholder="994709807107" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Təcrübə (il)</label>
-                <input type="number" id="p-experience" class="form-input" />
-              </div>
+              <div class="form-group"><label class="form-label">Ad, Soyad</label><input type="text" id="p-name" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">Vəzifə (AZ)</label><input type="text" id="p-role_az" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">Vəzifə (RU)</label><input type="text" id="p-role_ru" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">Vəzifə (EN)</label><input type="text" id="p-role_en" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">Telefon</label><input type="text" id="p-phone" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">E-poçt</label><input type="email" id="p-email" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">WhatsApp (rəqəmlər)</label><input type="text" id="p-whatsapp" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">Təcrübə (il)</label><input type="number" id="p-experience" class="form-input" /></div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Ünvan</label>
-              <input type="text" id="p-address" class="form-input" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Vəkil bürosu</label>
-              <input type="text" id="p-bureau" class="form-input" />
-            </div>
+            <div class="form-group"><label class="form-label">Ünvan</label><input type="text" id="p-address" class="form-input" /></div>
+            <div class="form-group"><label class="form-label">Vəkil bürosu</label><input type="text" id="p-bureau" class="form-input" /></div>
             <div class="admin-grid admin-grid-2">
-              <div class="form-group">
-                <label class="form-label">Facebook URL</label>
-                <input type="url" id="p-facebook" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Instagram URL</label>
-                <input type="url" id="p-instagram" class="form-input" />
-              </div>
+              <div class="form-group"><label class="form-label">Facebook URL</label><input type="url" id="p-facebook" class="form-input" /></div>
+              <div class="form-group"><label class="form-label">Instagram URL</label><input type="url" id="p-instagram" class="form-input" /></div>
             </div>
             <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> Yadda saxla</button>
           </form>
         </div>
       </div>
 
-      <!-- ===== TESTIMONIALS ===== -->
+      <!-- TESTIMONIALS -->
       <div class="admin-panel" id="panel-testimonials">
-        <div class="admin-card" style="margin-bottom:0;">
+        <div class="admin-card">
           <div class="admin-card-title"><i class="fas fa-plus"></i> Yeni rəy əlavə et</div>
           <div class="admin-grid admin-grid-2">
-            <div class="form-group">
-              <label class="form-label">Ad, Soyad</label>
-              <input type="text" id="t-name" class="form-input" placeholder="Leyla M." />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Hüquq sahəsi</label>
-              <input type="text" id="t-case" class="form-input" placeholder="Ailə hüququ" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Ulduz sayı</label>
+            <div class="form-group"><label class="form-label">Ad, Soyad</label><input type="text" id="t-name" class="form-input" placeholder="Leyla M." /></div>
+            <div class="form-group"><label class="form-label">Hüquq sahəsi</label><input type="text" id="t-case" class="form-input" placeholder="Ailə hüququ" /></div>
+            <div class="form-group"><label class="form-label">Ulduz sayı</label>
               <select id="t-stars" class="form-select">
-                <option value="5">★★★★★ (5)</option>
-                <option value="4">★★★★☆ (4)</option>
-                <option value="3">★★★☆☆ (3)</option>
+                <option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Rəy mətni</label>
-            <textarea id="t-text" class="form-textarea" placeholder="Müvəkkilin rəyini daxil edin..."></textarea>
-          </div>
+          <div class="form-group"><label class="form-label">Rəy mətni</label><textarea id="t-text" class="form-textarea" placeholder="Müvəkkilin rəyini daxil edin..."></textarea></div>
           <button class="btn btn-gold" onclick="addTestimonial()"><i class="fas fa-plus"></i> Əlavə et</button>
         </div>
-
-        <div style="height:20px;"></div>
-
         <div class="admin-card">
           <div class="admin-card-title"><i class="fas fa-list"></i> Mövcud rəylər</div>
           <div class="items-list" id="testimonials-list"></div>
         </div>
       </div>
 
-      <!-- ===== CERTIFICATES ===== -->
+      <!-- CERTIFICATES -->
       <div class="admin-panel" id="panel-certificates">
         <div class="admin-card">
-          <div class="admin-card-title"><i class="fas fa-plus"></i> Yeni sertifikat əlavə et</div>
+          <div class="admin-card-title"><i class="fas fa-plus"></i> Yeni sertifikat</div>
           <div class="admin-grid admin-grid-2">
-            <div class="form-group">
-              <label class="form-label">Il</label>
-              <input type="text" id="c-year" class="form-input" placeholder="2024" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Emoji ikona</label>
-              <input type="text" id="c-icon" class="form-input" placeholder="🎓" />
-            </div>
-            <div class="form-group" style="grid-column: 1 / -1;">
-              <label class="form-label">Sertifikat adı</label>
-              <input type="text" id="c-name" class="form-input" placeholder="Sertifikat adı..." />
-            </div>
-            <div class="form-group" style="grid-column: 1 / -1;">
-              <label class="form-label">Təşkilat / Qurum</label>
-              <input type="text" id="c-org" class="form-input" placeholder="Qurum adı..." />
-            </div>
+            <div class="form-group"><label class="form-label">İl</label><input type="text" id="c-year" class="form-input" placeholder="2024" /></div>
+            <div class="form-group"><label class="form-label">İkona (emoji)</label><input type="text" id="c-icon" class="form-input" placeholder="🎓" /></div>
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label">Sertifikat adı</label><input type="text" id="c-name" class="form-input" /></div>
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label">Təşkilat</label><input type="text" id="c-org" class="form-input" /></div>
           </div>
           <button class="btn btn-gold" onclick="addCertificate()"><i class="fas fa-plus"></i> Əlavə et</button>
         </div>
-
         <div class="admin-card">
           <div class="admin-card-title"><i class="fas fa-list"></i> Mövcud sertifikatlar</div>
           <div class="items-list" id="certs-list"></div>
         </div>
       </div>
 
-      <!-- ===== MEDIA ===== -->
+      <!-- MEDIA -->
       <div class="admin-panel" id="panel-media">
         <div class="admin-card">
-          <div class="admin-card-title"><i class="fas fa-plus"></i> Yeni media çıxışı əlavə et</div>
+          <div class="admin-card-title"><i class="fas fa-plus"></i> Yeni media çıxışı</div>
           <div class="admin-grid admin-grid-2">
-            <div class="form-group">
-              <label class="form-label">Media növü</label>
+            <div class="form-group"><label class="form-label">Növ</label>
               <select id="m-type" class="form-select">
-                <option value="TV">📺 TV</option>
-                <option value="Radio">🎙️ Radio</option>
-                <option value="Mətbuat">📰 Mətbuat</option>
-                <option value="Online">🌐 Online</option>
-                <option value="Digər">📋 Digər</option>
+                <option value="TV">📺 TV</option><option value="Radio">🎙️ Radio</option>
+                <option value="Mətbuat">📰 Mətbuat</option><option value="Online">🌐 Online</option><option value="Digər">📋 Digər</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">Tarix</label>
-              <input type="text" id="m-date" class="form-input" placeholder="Yanvar 2024" />
-            </div>
-            <div class="form-group" style="grid-column: 1 / -1;">
-              <label class="form-label">Başlıq</label>
-              <input type="text" id="m-title" class="form-input" placeholder="Çıxışın mövzusu..." />
-            </div>
-            <div class="form-group" style="grid-column: 1 / -1;">
-              <label class="form-label">Mənbə / Kanal</label>
-              <input type="text" id="m-source" class="form-input" placeholder="AzTV, Lider TV, 1news.az ..." />
-            </div>
+            <div class="form-group"><label class="form-label">Tarix</label><input type="text" id="m-date" class="form-input" placeholder="Yanvar 2024" /></div>
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label">Başlıq</label><input type="text" id="m-title" class="form-input" /></div>
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label">Mənbə</label><input type="text" id="m-source" class="form-input" placeholder="AzTV, Lider TV..." /></div>
           </div>
           <button class="btn btn-gold" onclick="addMedia()"><i class="fas fa-plus"></i> Əlavə et</button>
         </div>
-
         <div class="admin-card">
           <div class="admin-card-title"><i class="fas fa-list"></i> Mövcud media çıxışları</div>
           <div class="items-list" id="media-list"></div>
         </div>
       </div>
 
-      <!-- ===== DATA BACKUP ===== -->
+      <!-- DATA -->
       <div class="admin-panel" id="panel-data">
         <div class="admin-card">
-          <div class="admin-card-title"><i class="fas fa-download"></i> Məlumat ixracı (Export)</div>
-          <p style="color:var(--muted); font-size:13.5px; line-height:1.8; margin-bottom:20px;">
-            Bütün kontent məlumatlarını JSON formatında yükləyin. Bu faylı ehtiyat nüsxə kimi saxlaya bilərsiniz.
-          </p>
+          <div class="admin-card-title"><i class="fas fa-download"></i> Export</div>
+          <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px;">Bütün məlumatları JSON formatında yükləyin.</p>
           <button class="btn btn-gold" onclick="exportData()"><i class="fas fa-download"></i> JSON Export et</button>
         </div>
-
         <div class="admin-card">
-          <div class="admin-card-title"><i class="fas fa-upload"></i> Məlumat idxalı (Import)</div>
-          <p style="color:var(--muted); font-size:13.5px; line-height:1.8; margin-bottom:20px;">
-            Əvvəlcədən export edilmiş JSON faylını yükləyin. Bu, mövcud məlumatları əvəz edəcək.
-          </p>
+          <div class="admin-card-title"><i class="fas fa-upload"></i> Import</div>
+          <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px;">Export edilmiş faylı yükləyin.</p>
           <label class="btn btn-ghost" style="cursor:pointer;">
             <i class="fas fa-upload"></i> JSON Import et
             <input type="file" accept=".json" onchange="importData(event)" style="display:none;" />
           </label>
         </div>
-
         <div class="admin-card">
-          <div class="admin-card-title"><i class="fas fa-trash-alt"></i> Məlumatları sıfırla</div>
-          <p style="color:var(--muted); font-size:13.5px; line-height:1.8; margin-bottom:20px;">
-            Bütün kontent məlumatlarını ilkin (default) vəziyyətə qaytarın. Bu əməliyyat geri alına bilməz!
-          </p>
-          <button class="btn btn-danger" onclick="if(confirm('Bütün məlumatlar silinəcək! Davam etmək istəyirsiniz?')) { localStorage.removeItem('turan_lawyer_data'); showToast('Sıfırlandı'); initAdmin(); }">
+          <div class="admin-card-title"><i class="fas fa-trash-alt"></i> Sıfırla</div>
+          <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px;">Bütün məlumatları ilkin vəziyyətə qaytarın.</p>
+          <button class="btn btn-danger" onclick="if(confirm('Əminsiniz?')){localStorage.removeItem('turan_lawyer_data');showToast('Sıfırlandı');initAdmin();}">
             <i class="fas fa-undo"></i> Sıfırla
           </button>
         </div>
       </div>
 
-    </div><!-- /admin-content -->
+    </div>
   </main>
-</div><!-- /admin-layout -->
+</div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+<!-- ★ LOGIN: inline, no dependencies, runs immediately ★ -->
+<script>
+(function() {
+  var PWD = 'valliserturan';
+  var SK  = 'turan_admin_auth';
+
+  function go() {
+    var ls = document.getElementById('login-screen');
+    var la = document.getElementById('admin-layout');
+    var btn = document.getElementById('login-btn');
+    var inp = document.getElementById('login-password');
+    var err = document.getElementById('login-error');
+
+    if (sessionStorage.getItem(SK) === 'ok') {
+      ls.style.display = 'none';
+      la.style.display = 'flex';
+      return;
+    }
+
+    btn.onclick = function() {
+      if (inp.value === PWD) {
+        sessionStorage.setItem(SK, 'ok');
+        ls.style.display = 'none';
+        la.style.display = 'flex';
+      } else {
+        err.style.display = 'block';
+        inp.value = '';
+        inp.focus();
+      }
+    };
+
+    inp.onkeydown = function(e) {
+      if (e.key === 'Enter') btn.onclick();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', go);
+  } else {
+    go();
+  }
+})();
+</script>
+
 <script src="admin.js"></script>
 </body>
 </html>
