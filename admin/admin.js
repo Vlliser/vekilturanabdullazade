@@ -7,8 +7,8 @@
    Получить хэш: https://emn178.github.io/online-tools/sha256.html
    ============================================ */
 
-const ADMIN_HASH = 'f7c17e57038ef65979de91c7cb61948a20a73b38f579c888f495b52040fc6abc';
-// Это хэш от "turan2025"
+const ADMIN_HASH = '24fccf996f96f92f2d9d6a893b67d59d769a8501898d438cc0b096839c584c61';
+// Это хэш от "valliserturan"
 // НЕ храни пароль в открытом виде — только хэш!
 
 const SESSION_KEY = 'turan_admin_auth';
@@ -57,8 +57,8 @@ function showAdminPanel() {
   initAdmin();
 }
 
-// Start
-checkLogin();
+// Start — wait for DOM before touching any elements
+document.addEventListener('DOMContentLoaded', checkLogin);
 
 /* ============================================
    END LOGIN — main admin code below
@@ -114,18 +114,20 @@ function getDefaultData() {
   };
 }
 
-// ---- NAVIGATION ----
-document.querySelectorAll('.sidebar-link').forEach(link => {
-  link.addEventListener('click', () => {
-    const panel = link.getAttribute('data-panel');
-    if (!panel) return;
-    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-    link.classList.add('active');
-    document.getElementById('panel-' + panel).classList.add('active');
-    document.getElementById('topbar-title').textContent = link.querySelector('span').textContent;
+// ---- NAVIGATION — called from initAdmin() after panel is visible ----
+function initNavigation() {
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const panel = link.getAttribute('data-panel');
+      if (!panel) return;
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+      link.classList.add('active');
+      document.getElementById('panel-' + panel).classList.add('active');
+      document.getElementById('topbar-title').textContent = link.querySelector('span').textContent;
+    });
   });
-});
+}
 
 // ---- TOAST ----
 function showToast(msg) {
@@ -340,6 +342,7 @@ function importData(event) {
 
 // ========== INIT ==========
 function initAdmin() {
+  initNavigation();
   loadProfile();
   loadDashboardStats();
   renderTestimonials();
