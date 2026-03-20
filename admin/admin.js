@@ -1,4 +1,70 @@
 /* ============================================
+   LOGIN PROTECTION
+   Пароль хранится в виде SHA-256 хэша.
+   Текущий пароль: turan2025
+   Чтобы сменить пароль — замени HASH ниже
+   на новый SHA-256 хэш своего пароля.
+   Получить хэш: https://emn178.github.io/online-tools/sha256.html
+   ============================================ */
+
+const ADMIN_HASH = '24fccf996f96f92f2d9d6a893b67d59d769a8501898d438cc0b096839c584c61';
+// Это хэш от "turan2025"
+// НЕ храни пароль в открытом виде — только хэш!
+
+const SESSION_KEY = 'turan_admin_auth';
+
+async function hashPassword(password) {
+  const msgBuffer = new TextEncoder().encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray  = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkLogin() {
+  // Already authenticated in this session?
+  if (sessionStorage.getItem(SESSION_KEY) === 'ok') {
+    showAdminPanel();
+    return;
+  }
+  // Show login screen
+  document.getElementById('login-screen').classList.remove('hidden');
+
+  const btn  = document.getElementById('login-btn');
+  const inp  = document.getElementById('login-password');
+  const err  = document.getElementById('login-error');
+
+  async function attempt() {
+    const hash = await hashPassword(inp.value);
+    if (hash === ADMIN_HASH) {
+      sessionStorage.setItem(SESSION_KEY, 'ok');
+      document.getElementById('login-screen').classList.add('hidden');
+      showAdminPanel();
+    } else {
+      err.classList.add('show');
+      btn.classList.add('shake');
+      inp.value = '';
+      inp.focus();
+      setTimeout(() => btn.classList.remove('shake'), 400);
+    }
+  }
+
+  btn.addEventListener('click', attempt);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+}
+
+function showAdminPanel() {
+  document.getElementById('admin-layout').style.display = 'flex';
+  initAdmin();
+}
+
+// Start
+checkLogin();
+
+/* ============================================
+   END LOGIN — main admin code below
+   ============================================ */
+
+/* ============================================
    TURAN ABDULLAZADƏ - Admin Panel JS
    ============================================ */
 
@@ -281,4 +347,4 @@ function initAdmin() {
   renderMedia();
 }
 
-document.addEventListener('DOMContentLoaded', initAdmin);
+// initAdmin() is now called by showAdminPanel() after successful login

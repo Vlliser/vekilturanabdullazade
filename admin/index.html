@@ -9,7 +9,26 @@
 </head>
 <body>
 
-<div class="admin-layout">
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen">
+  <div class="login-box">
+    <img src="../images/logo.png" alt="Logo" class="login-logo" />
+    <div class="login-title">Admin Panel</div>
+    <div class="login-sub">Turan Abdullazade · Vekil</div>
+    <div class="login-form">
+      <div class="login-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="login-password" placeholder="Parol..." autocomplete="current-password" />
+      </div>
+      <div class="login-error" id="login-error">Parol yanlisdir!</div>
+      <button class="login-btn" id="login-btn">
+        <i class="fas fa-sign-in-alt"></i> Daxil ol
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="admin-layout" id="admin-layout" style="display:none;">
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
