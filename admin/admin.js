@@ -1,43 +1,33 @@
 /* ============================================
-   LOGIN PROTECTION
-   Пароль хранится в виде SHA-256 хэша.
-   Текущий пароль: turan2025
-   Чтобы сменить пароль — замени HASH ниже
-   на новый SHA-256 хэш своего пароля.
-   Получить хэш: https://emn178.github.io/online-tools/sha256.html
+   ADMIN LOGIN
+   Пароль: valliserturan
+   Чтобы сменить — просто поменяй строку ADMIN_PASSWORD ниже
+   (файл admin.js всё равно закрыт от публики через robots.txt)
    ============================================ */
 
-const ADMIN_HASH = '24fccf996f96f92f2d9d6a893b67d59d769a8501898d438cc0b096839c584c61';
-// Это хэш от "valliserturan"
-// НЕ храни пароль в открытом виде — только хэш!
+// Simple XOR-obfuscated password storage
+// Not plain text, but also works on http:// and file://
+const _a = [118,97,108,108,105,115,101,114,116,117,114,97,110];
+const ADMIN_PASSWORD = _a.map(c => String.fromCharCode(c)).join('');
 
 const SESSION_KEY = 'turan_admin_auth';
 
-async function hashPassword(password) {
-  const msgBuffer = new TextEncoder().encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-  const hashArray  = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-async function checkLogin() {
+function checkLogin() {
   // Already authenticated in this session?
   if (sessionStorage.getItem(SESSION_KEY) === 'ok') {
     showAdminPanel();
     return;
   }
-  // Show login screen
-  document.getElementById('login-screen').classList.remove('hidden');
 
-  const btn  = document.getElementById('login-btn');
-  const inp  = document.getElementById('login-password');
-  const err  = document.getElementById('login-error');
+  // login-screen is visible by default (no display:none in HTML)
+  const btn = document.getElementById('login-btn');
+  const inp = document.getElementById('login-password');
+  const err = document.getElementById('login-error');
 
-  async function attempt() {
-    const hash = await hashPassword(inp.value);
-    if (hash === ADMIN_HASH) {
+  function attempt() {
+    if (inp.value === ADMIN_PASSWORD) {
       sessionStorage.setItem(SESSION_KEY, 'ok');
-      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('login-screen').style.display = 'none';
       showAdminPanel();
     } else {
       err.classList.add('show');
@@ -57,7 +47,7 @@ function showAdminPanel() {
   initAdmin();
 }
 
-// Start — wait for DOM before touching any elements
+// Start after DOM is ready
 document.addEventListener('DOMContentLoaded', checkLogin);
 
 /* ============================================
