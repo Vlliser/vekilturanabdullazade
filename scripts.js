@@ -364,12 +364,23 @@ const translations = {
 let currentLang = localStorage.getItem('lang') || 'az';
 
 /* ---- PRELOADER ---- */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const pl = document.getElementById('preloader');
-    if (pl) pl.classList.add('hidden');
-  }, 1200);
+function hidePreloader() {
+  const pl = document.getElementById('preloader');
+  if (pl && !pl.classList.contains('hidden')) pl.classList.add('hidden');
+}
+
+// Скрываем лоадер как только DOM готов (не ждём все картинки)
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(hidePreloader, 800);
 });
+
+// Запасной вариант — если load всё же сработает раньше
+window.addEventListener('load', () => {
+  setTimeout(hidePreloader, 400);
+});
+
+// Аварийный таймаут — лоадер скроется максимум через 3 секунды
+setTimeout(hidePreloader, 3000);
 
 /* ---- NAVBAR SCROLL ---- */
 const navbar = document.getElementById('navbar');
