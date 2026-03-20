@@ -499,7 +499,7 @@ if (consultForm) {
     const t = translations[currentLang];
     const text = `👋 Salam, Turan bəy!\n\n📋 *Məsləhət üçün müraciət:*\n\n👤 Ad: ${name}\n📞 Telefon: ${phone}\n⚖️ Sahə: ${subject}\n💬 Məsələ: ${message}`;
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/994709807107?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/994709807807?text=${encoded}`, '_blank');
   });
 }
 
