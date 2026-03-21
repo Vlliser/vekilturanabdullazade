@@ -55,7 +55,7 @@ const translations = {
 
     // About
     about_label: "Haqqımda",
-    about_title: "Hüquq — mənim\npeyşəm və missiyam",
+    about_title: "Hüquq — mənim\npeşəm və missiyam",
     about_text1: "Mən Abdullazadə Turan Elşad oğluyam — Azərbaycan Respublikasının lisenziyalı vəkili. 7 illik vəkillik fəaliyyətim ərzində yüzlərlə müvəkkilin hüquqlarını müdafiə etmişəm.",
     about_text2: "İşimi həm peşə, həm də missiya kimi qəbul edirəm. Hər bir işə ciddi və məsuliyyətlə yanaşır, müvəkkillərimin maraqlarını ön planda tuturam.",
     about_info_exp_label: "Vəkillik müddəti",
@@ -364,13 +364,12 @@ const translations = {
 let currentLang = localStorage.getItem('lang') || 'az';
 
 /* ---- PRELOADER ---- */
-function hidePreloader() {
-  const pl = document.getElementById('preloader');
-  if (pl && !pl.classList.contains('hidden')) pl.classList.add('hidden');
-}
-document.addEventListener('DOMContentLoaded', () => { setTimeout(hidePreloader, 800); });
-window.addEventListener('load', () => { setTimeout(hidePreloader, 400); });
-setTimeout(hidePreloader, 3000);
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const pl = document.getElementById('preloader');
+    if (pl) pl.classList.add('hidden');
+  }, 1200);
+});
 
 /* ---- NAVBAR SCROLL ---- */
 const navbar = document.getElementById('navbar');
@@ -500,7 +499,7 @@ if (consultForm) {
     const t = translations[currentLang];
     const text = `👋 Salam, Turan bəy!\n\n📋 *Məsləhət üçün müraciət:*\n\n👤 Ad: ${name}\n📞 Telefon: ${phone}\n⚖️ Sahə: ${subject}\n💬 Məsələ: ${message}`;
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/994709807807?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/994709807107?text=${encoded}`, '_blank');
   });
 }
 
